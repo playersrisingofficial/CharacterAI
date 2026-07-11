@@ -1,0 +1,23 @@
+services:
+  autonoma:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: autonoma:latest
+    ports:
+      - "8000:8000"
+    environment:
+      # Application deployment settings (see .env.example for all options).
+      AUTONOMA_AUTOMATION_BACKEND: ${AUTONOMA_AUTOMATION_BACKEND:-simulated}
+      AUTONOMA_VAULT_KEY: ${AUTONOMA_VAULT_KEY:-}
+      AUTONOMA_SESSION_COST_CEILING: ${AUTONOMA_SESSION_COST_CEILING:-}
+      AUTONOMA_WORK_DIR: ${AUTONOMA_WORK_DIR:-}
+    volumes:
+      - autonoma-data:/data
+      # Local/Hybrid inference only: mount host model weights read-only and set
+      # AUTONOMA_MODELS_DIR. Not needed for API-Based mode (no local weights).
+      # - ./models:/models:ro
+    restart: unless-stopped
+
+volumes:
+  autonoma-data:
