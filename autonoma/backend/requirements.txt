@@ -1,8 +1,0 @@
-fastapi>=0.110
-uvicorn[standard]>=0.29
-pydantic>=2.7
-jsonschema>=4.21
-psutil>=5.9
-# Optional extras:
-#   pyautogui  -> real desktop backend (AUTONOMA_AUTOMATION_BACKEND=desktop)
-#   cryptography -> stronger vault encryption (auto-detected if present)
